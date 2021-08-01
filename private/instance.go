@@ -129,6 +129,7 @@ func (p *Private) handler(w http.ResponseWriter, r *http.Request) {
 
 		// todo: need to check checksum before sending, this is better to do on private side to check storage consistency
 		//   and on the public side to check network
+		// warn: this cause to "http: superfluous response.WriteHeader call from)" at line 141
 		_, err = io.Copy(w, rd)
 		if err != nil {
 			w.WriteHeader(http.StatusInternalServerError)
